@@ -3,3 +3,6 @@ node_modules
 
 # IntelliJ IDE Configuration
 .idea
+
+# Environment
+.env
