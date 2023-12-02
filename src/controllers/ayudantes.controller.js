@@ -1,4 +1,5 @@
 import {Ayudante} from "../models/Ayudante.js";
+import {Multa} from "../models/Multa.js";
 
 export const crearAyudante = async (req, res) => {
     try {
@@ -9,7 +10,7 @@ export const crearAyudante = async (req, res) => {
             Carrera: carrera,
             Contrasenia: contrasenia
         })
-        res.json(nuevoAyudante);
+        res.status(201).json(nuevoAyudante);
     } catch (e) {
         res.status(500).json({message: e.message});
     }
@@ -63,6 +64,21 @@ export const eliminarAyudante = async (req, res) => {
         });
 
         res.sendStatus(204);
+    } catch (e) {
+        res.status(500).json({message: e.message});
+    }
+}
+
+export const obtenerMultasAyudante = async (req, res) => {
+    try {
+        const {idBanner} = req.params;
+        const multas = await Multa.findAll({
+            where: {
+                AyudanteId: idBanner
+            }
+        });
+
+        res.json(multas);
     } catch (e) {
         res.status(500).json({message: e.message});
     }

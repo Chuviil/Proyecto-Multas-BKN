@@ -1,5 +1,6 @@
 import express from 'express';
 import ayudantesRoutes from "./routes/ayudantes.routes.js";
+import multasRoutes from "./routes/multas.routes.js";
 
 const app = express();
 
@@ -7,6 +8,7 @@ const app = express();
 app.use(express.json());
 
 // Routes
-app.use(ayudantesRoutes);
+app.use("/api/Ayudante", ayudantesRoutes);
+app.use("/api/Multa", multasRoutes);
 
 export default app;
