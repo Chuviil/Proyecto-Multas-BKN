@@ -4,7 +4,7 @@ import {sequelize} from "./database/database.js";
 
 const main = async () => {
     try {
-        await sequelize.sync({alter: true});
+        await sequelize.sync({force: true});
         app.listen(config.PORT, () => {
             console.log("Server is running on port", config.PORT);
         });

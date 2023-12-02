@@ -2,8 +2,9 @@ import {Ayudante} from "../models/Ayudante.js";
 
 export const crearAyudante = async (req, res) => {
     try {
-        const {nombre, carrera, contrasenia} = req.body;
+        const {idBanner, nombre, carrera, contrasenia} = req.body;
         const nuevoAyudante = await Ayudante.create({
+            IdBanner: idBanner,
             Nombre: nombre,
             Carrera: carrera,
             Contrasenia: contrasenia
