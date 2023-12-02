@@ -4,9 +4,8 @@ import {Multa} from "./Multa.js";
 
 export const Ayudante = sequelize.define("Ayudantes", {
     IdBanner: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true,
     },
     Nombre: {
         type: DataTypes.STRING,
