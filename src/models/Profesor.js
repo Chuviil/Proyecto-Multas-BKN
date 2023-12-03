@@ -20,9 +20,8 @@ import {DataTypes} from "sequelize";
  */
 export const Profesor = sequelize.define("Profesores", {
     IdBanner: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true,
     },
     Contrasenia: {
         type: DataTypes.STRING
