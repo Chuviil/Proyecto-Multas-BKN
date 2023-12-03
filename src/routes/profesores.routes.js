@@ -1,4 +1,10 @@
 import {Router} from "express";
+import {
+    actualizarProfesor,
+    eliminarProfesor,
+    loginProfesor,
+    registrarProfesor
+} from "../controllers/profesores.controller.js";
 
 const router = Router();
 
@@ -17,7 +23,7 @@ const router = Router();
  *         "200":
  *           description: "OK"
  */
-router.post("/registro");
+router.post("/registro", registrarProfesor);
 
 /**
  * @swagger
@@ -34,7 +40,7 @@ router.post("/registro");
  *         "200":
  *           description: "OK"
  */
-router.post("/login");
+router.post("/login", loginProfesor);
 
 /**
  * @swagger
@@ -55,7 +61,7 @@ router.post("/login");
  *         "200":
  *           description: "OK"
  */
-router.put("/:idBanner");
+router.put("/:idBanner", actualizarProfesor);
 
 /**
  * @swagger
@@ -71,6 +77,6 @@ router.put("/:idBanner");
  *         "200":
  *           description: "OK"
  */
-router.delete("/:idBanner");
+router.delete("/:idBanner", eliminarProfesor);
 
 export default router;
