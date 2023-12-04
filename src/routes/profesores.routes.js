@@ -5,6 +5,7 @@ import {
     loginProfesor,
     registrarProfesor
 } from "../controllers/profesores.controller.js";
+import {verifyToken} from "../middlewares/verifyToken.js";
 
 const router = Router();
 
@@ -60,8 +61,10 @@ router.post("/login", loginProfesor);
  *       responses:
  *         "200":
  *           description: "OK"
+ *       security:
+ *         - bearerAuth: []
  */
-router.put("/:idBanner", actualizarProfesor);
+router.put("/:idBanner", verifyToken, actualizarProfesor);
 
 /**
  * @swagger
@@ -76,7 +79,9 @@ router.put("/:idBanner", actualizarProfesor);
  *       responses:
  *         "200":
  *           description: "OK"
+ *       security:
+ *         - bearerAuth: []
  */
-router.delete("/:idBanner", eliminarProfesor);
+router.delete("/:idBanner", verifyToken, eliminarProfesor);
 
 export default router;

@@ -75,8 +75,10 @@ router.get("/:multaId", obtenerMulta);
  *       responses:
  *         "200":
  *           description: "OK"
+ *       security:
+ *         - bearerAuth: []
  */
-router.put("/:multaId", actualizarMulta);
+router.put("/:multaId", verifyToken, actualizarMulta);
 
 /**
  * @swagger
@@ -91,7 +93,9 @@ router.put("/:multaId", actualizarMulta);
  *       responses:
  *         "200":
  *           description: "OK"
+ *       security:
+ *         - bearerAuth: []
  */
-router.delete("/:multaId", eliminarMulta);
+router.delete("/:multaId", verifyToken, eliminarMulta);
 
 export default router;

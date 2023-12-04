@@ -25,8 +25,10 @@ const router = Router();
  *       responses:
  *         "200":
  *           description: "OK"
+ *       security:
+ *         - bearerAuth: []
  */
-router.post("/", crearAyudante);
+router.post("/", verifyToken, crearAyudante);
 
 /**
  * @swagger
@@ -90,8 +92,10 @@ router.get("/:idBanner/multas", obtenerMultasAyudante);
  *       responses:
  *         "200":
  *           description: "OK"
+ *       security:
+ *         - bearerAuth: []
  */
-router.put("/:idBanner", actualizarAyudante);
+router.put("/:idBanner", verifyToken, actualizarAyudante);
 
 /**
  * @swagger
@@ -106,7 +110,9 @@ router.put("/:idBanner", actualizarAyudante);
  *       responses:
  *         "200":
  *           description: "OK"
+ *       security:
+ *         - bearerAuth: []
  */
-router.delete("/:idBanner", eliminarAyudante);
+router.delete("/:idBanner", verifyToken, eliminarAyudante);
 
 export default router;
