@@ -7,6 +7,7 @@ import {
     obtenerAyudantes,
     obtenerMultasAyudante
 } from "../controllers/ayudantes.controller.js";
+import {verifyToken} from "../middlewares/verifyToken.js";
 
 const router = Router();
 
