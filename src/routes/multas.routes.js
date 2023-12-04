@@ -6,6 +6,7 @@ import {
     obtenerMulta,
     obtenerMultas
 } from "../controllers/multas.controller.js";
+import {verifyToken} from "../middlewares/verifyToken.js";
 
 const router = Router();
 
@@ -23,8 +24,10 @@ const router = Router();
  *       responses:
  *         "200":
  *           description: "OK"
+ *       security:
+ *         - bearerAuth: []
  */
-router.post("/", crearMulta);
+router.post("/", verifyToken, crearMulta);
 
 /**
  * @swagger

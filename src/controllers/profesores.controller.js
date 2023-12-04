@@ -1,4 +1,6 @@
 import {Profesor} from "../models/Profesor.js";
+import jwt from "jsonwebtoken";
+import config from "../config.js";
 
 export const registrarProfesor = async (req, res) => {
     try {
@@ -8,7 +10,8 @@ export const registrarProfesor = async (req, res) => {
             Nombre: nombre,
             Contrasenia: contrasenia
         });
-        res.status(201).json(profesor);
+        const token = jwt.sign({IdBanner: profesor.IdBanner}, config.SECRET)
+        res.status(201).json({token});
     } catch (e) {
         res.status(500).json({message: e.message});
     }
@@ -19,7 +22,8 @@ export const loginProfesor = async (req, res) => {
         const {idBanner, contrasenia} = req.body;
         const profesor = await Profesor.findByPk(idBanner);
         if (profesor.Contrasenia !== contrasenia) return res.sendStatus(401);
-        res.json(profesor);
+        const token = jwt.sign({IdBanner: profesor.IdBanner}, config.SECRET);
+        res.json({token});
     } catch (e) {
         res.status(500).json({message: e.message});
     }
