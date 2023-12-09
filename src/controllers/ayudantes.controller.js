@@ -25,7 +25,7 @@ export const loginAyudante = async (req, res) => {
         if (!ayudante) return res.sendStatus(404);
         if (ayudante.Contrasenia !== contrasenia) return res.sendStatus(401);
         const token = jwt.sign({IdBanner: ayudante.IdBanner}, config.SECRET);
-        res.json({token});
+        res.json({token, user: ayudante});
     } catch (e) {
         res.status(500).json({message: e.message});
     }
