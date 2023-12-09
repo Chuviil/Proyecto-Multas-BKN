@@ -2,7 +2,7 @@ import {Router} from "express";
 import {
     actualizarAyudante,
     crearAyudante,
-    eliminarAyudante,
+    eliminarAyudante, loginAyudante,
     obtenerAyudante,
     obtenerAyudantes,
     obtenerMultasAyudante
@@ -29,6 +29,23 @@ const router = Router();
  *         - bearerAuth: []
  */
 router.post("/", verifyToken, crearAyudante);
+
+/**
+ * @swagger
+ *   /api/Ayudante/login:
+ *     post:
+ *       tags:
+ *         - Ayudante
+ *       requestBody:
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Ayudante'
+ *       responses:
+ *         "200":
+ *           description: "OK"
+ */
+router.post("/login", loginAyudante);
 
 /**
  * @swagger

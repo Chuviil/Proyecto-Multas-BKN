@@ -1,5 +1,7 @@
 import {Ayudante} from "../models/Ayudante.js";
 import {Multa} from "../models/Multa.js";
+import jwt from "jsonwebtoken";
+import config from "../config.js";
 
 export const crearAyudante = async (req, res) => {
     try {
@@ -11,6 +13,19 @@ export const crearAyudante = async (req, res) => {
             Contrasenia: contrasenia
         })
         res.status(201).json(nuevoAyudante);
+    } catch (e) {
+        res.status(500).json({message: e.message});
+    }
+}
+
+export const loginAyudante = async (req, res) => {
+    try {
+        const {idBanner, contrasenia} = req.body;
+        const ayudante = await Ayudante.findByPk(idBanner);
+        if (!ayudante) return res.sendStatus(404);
+        if (ayudante.Contrasenia !== contrasenia) return res.sendStatus(401);
+        const token = jwt.sign({IdBanner: ayudante.IdBanner}, config.SECRET);
+        res.json({token});
     } catch (e) {
         res.status(500).json({message: e.message});
     }
