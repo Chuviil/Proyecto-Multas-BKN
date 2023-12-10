@@ -16,6 +16,9 @@ import {DataTypes} from "sequelize";
  *     razon:
  *      type: string
  *      example: Tomar agua
+ *     emitida:
+ *      type: date
+ *      example: 2020-01-01
  *     ayudanteId:
  *      type: string
  *      example: A00909988
@@ -32,6 +35,9 @@ export const Multa = sequelize.define("Multas", {
     Razon: {
         type: DataTypes.STRING,
     },
+    Emitida: {
+        type: DataTypes.DATE,
+    }
 }, {
     timestamps: false,
 });
