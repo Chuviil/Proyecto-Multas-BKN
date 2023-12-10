@@ -6,7 +6,8 @@ export const crearMulta = async (req, res) => {
         const nuevaMulta = await Multa.create({
             Razon: razon,
             Monto: monto,
-            AyudanteId: ayudanteId
+            AyudanteId: ayudanteId,
+            Emitida: Date.now()
         });
         res.status(201).json(nuevaMulta);
     } catch (e) {
