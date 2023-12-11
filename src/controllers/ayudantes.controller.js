@@ -54,12 +54,13 @@ export const obtenerAyudante = async (req, res) => {
 export const actualizarAyudante = async (req, res) => {
     try {
         const {idBanner} = req.params;
-        const {nombre, carrera} = req.body;
+        const {nombre, carrera, contrasenia} = req.body;
 
         const ayudante = await Ayudante.findByPk(idBanner);
 
         ayudante.Nombre = nombre;
         ayudante.Carrera = carrera;
+        ayudante.Contrasenia = contrasenia;
 
         await ayudante.save();
 

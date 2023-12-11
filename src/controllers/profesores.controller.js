@@ -11,7 +11,7 @@ export const registrarProfesor = async (req, res) => {
             Contrasenia: contrasenia
         });
         const token = jwt.sign({IdBanner: profesor.IdBanner}, config.SECRET)
-        res.status(201).json({token});
+        res.status(201).json({...profesor.dataValues, token});
     } catch (e) {
         res.status(500).json({message: e.message});
     }
@@ -23,7 +23,7 @@ export const loginProfesor = async (req, res) => {
         const profesor = await Profesor.findByPk(idBanner);
         if (profesor.Contrasenia !== contrasenia) return res.sendStatus(401);
         const token = jwt.sign({IdBanner: profesor.IdBanner}, config.SECRET);
-        res.json({token});
+        res.json({...profesor.dataValues, token});
     } catch (e) {
         res.status(500).json({message: e.message});
     }
@@ -36,6 +36,7 @@ export const actualizarProfesor = async (req, res) => {
         const profesor = await Profesor.findByPk(idBanner);
         profesor.Nombre = nombre;
         profesor.Contrasenia = contrasenia;
+        await profesor.save();
         res.json(profesor);
     } catch (e) {
         res.status(500).json({message: e.message});
