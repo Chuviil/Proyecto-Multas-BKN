@@ -3,11 +3,13 @@ import ayudantesRoutes from "./routes/ayudantes.routes.js";
 import multasRoutes from "./routes/multas.routes.js";
 import profesoresRoutes from "./routes/profesores.routes.js";
 import morgan from "morgan";
+import cors from "cors";
 
 const app = express();
 
 // Middlewares
 app.use(express.json());
+app.use(cors())
 // app.use(morgan("dev"));
 
 // Routes
